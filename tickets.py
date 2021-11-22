@@ -10,20 +10,21 @@ class Ticket():
         return f"[{self.id}] {self.subject}"
 
 def get_tickets():
-    return parse_json(list_tickets())
+    tickets_raw = list_tickets()
+    return parse_raw_list(tickets_raw['tickets'])
+    
 def get_ticket(id):
-    return
-def parse_json(raw):
+    return parse_raw(show_ticket(id)['ticket'])
+
+def parse_raw_list(lst):
     tickets = []
-    for data in raw['tickets']:
-        id = data['id']
-        priority = data['priority']
-        subject = data['status']
-        description = data['description']
-        t = Ticket(id, priority, subject, description)
-        tickets.append(t)
+    for data in lst:
+        tickets.append(parse_raw(data))
     return tickets
 
-
-for t in get_tickets():
-    print(f"{t}\n")
+def parse_raw(data):
+    id = data['id']
+    priority = data['priority']
+    subject = data['subject']
+    description = data['description']
+    return Ticket(id, priority, subject, description)
