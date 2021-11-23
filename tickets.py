@@ -17,18 +17,25 @@ def get_tickets(params):
     if "sort_by" in params:
         payload["sort_by"] = params["sort_by"]
     tickets_raw = list_tickets(payload)
-    return parse_raw_list(tickets_raw['tickets'])
+    return parse_raw_list(tickets_raw['tickets'], params)
     
 def get_ticket(id):
     return parse_raw(show_ticket(id)['ticket'])
 
-def parse_raw_list(lst):
+def parse_raw_list(lst, params):
+    status = ""
+    if "status" in params:
+        status = params["status"]
     tickets = []
     for data in lst:
-        tickets.append(parse_raw(data))
+        ticket = parse_raw(data, status)
+        if ticket:
+            tickets.append(ticket)
     return tickets
 
-def parse_raw(data):
+def parse_raw(data, status=""):
+    if status and status != data['status']:
+        return None
     id = data['id']
     url = data['url']
     status = data['status']

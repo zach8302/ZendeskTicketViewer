@@ -33,13 +33,14 @@ def view_tickets(params):
 def view_ticket(params):
     id = input()
     ticket = get_ticket(id)
-    s = f"\n{ticket.url}\n[{ticket.id}]\nSubject: {ticket.subject}\nCreated: {ticket.created_at}\nStatus: {ticket.status}\nPriority: {ticket.priority}\nDescription: {ticket.description}"
+    s = f"\n[{ticket.id}] {ticket.url}\n\nSubject: {ticket.subject}\nCreated: {ticket.created_at}\nStatus: {ticket.status}\nPriority: {ticket.priority}\nDescription: {ticket.description}"
     print(s)
 
 def set_params(params):
-    # status = input()
-    # if status:
-    #     params["status"] = status
+    print("Status (Leave blank if none):")
+    status = input()
+    if status:
+         params["status"] = status
     # while True:
     #     before = input()
     #     if not before:
