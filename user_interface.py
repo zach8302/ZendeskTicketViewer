@@ -71,8 +71,8 @@ def view_ticket(params):
 def set_params(params):
     valid = {"open", "pending", "closed"}
     while True:
-        print("\nI want tickets with STATUS (open, pending, closed):")
-        print("Leave blank for all")
+        print("\nShow tickets with status: (open, pending, closed)")
+        print("Enter a selection (leave blank for all):")
         status = input()
         if not status:
             break
@@ -83,8 +83,8 @@ def set_params(params):
             print("\nInvalid status")
     date = r"\d{2}/\d{2}/\d{4}"
     while True:
-        print("\nI want tickets from after (MM/DD/YYYY):")
-        print("Leave blank for all")
+        print("\nShow tickets from after: (MM/DD/YYYY)")
+        print("Enter a selection (leave blank for all):")
         after = input()
         if not after:
             break
@@ -93,8 +93,8 @@ def set_params(params):
             break
         print("\nInvalid format")
     while True:
-        print("\nI want tickets from before (MM/DD/YYYY):")
-        print("Leave blank for all")
+        print("\nShow tickets from before: (MM/DD/YYYY)")
+        print("Enter a selection (leave blank for all):")
         before = input()
         if not before:
             break
@@ -104,7 +104,7 @@ def set_params(params):
         print("\nInvalid format")
     while True:
         print("\nSort tickets by (id, created_at, subject):")
-        print("Leave blank to sort by id")
+        print("Enter a selection (leave blank to sort by id)")
         valid = {"created_at", "id", "subject"}
         sort_by = input()
         if not sort_by:
