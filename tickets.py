@@ -34,7 +34,7 @@ def get_tickets(params):
     if "sort_by" in params:
         payload["sort_by"] = params["sort_by"]
     tickets_raw = list_tickets(payload)
-    if isinstance(tickets_raw, int):
+    if isinstance(tickets_raw, int) or not tickets_raw:
         handle_error(tickets_raw)
         return
     tickets = parse_raw_list(tickets_raw['tickets'])
@@ -43,7 +43,7 @@ def get_tickets(params):
 #Gets a ticket with a specific id
 def get_ticket(id):
     ticket_raw = show_ticket(id)
-    if isinstance(ticket_raw, int):
+    if isinstance(ticket_raw, int) or not ticket_raw:
         handle_error(ticket_raw)
         return
     return parse_raw(ticket_raw['ticket'])
@@ -77,10 +77,10 @@ def filter_tickets(tickets, status, before, after):
 
 def handle_error(status):
     if status == 401:
-        print("[401] Failed to authenticate. Please try again later")
+        print("\nFailed to authenticate. Please try again later")
         exit(401)
     elif status == 404:
         return
     else:
-        print("Failed to connect to the Zendesk API")
+        print("\nFailed to connect to the Zendesk API. Please try again later")
         exit()
