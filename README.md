@@ -3,6 +3,7 @@ A terminal based program written in Python that can view Zendesk tickets.
 
 ## Usage
 After cloning the repository, use "python3 main.py" to run the program from the root directory
+Works best in fullscreen terminal
 
 To view all tickets enter "view"
 You can scroll through pages of tickets using "next"

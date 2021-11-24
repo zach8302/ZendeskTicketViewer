@@ -14,7 +14,9 @@ class Ticket():
 
     #String representation of a ticket
     def __str__(self):
-        return f"[{self.id}] Created: {self.created_at} Status: {self.status} Subject: {self.subject}"
+        id_spaces = (1 * (self.id < 100) + 1 * (self.id < 10)) * " "
+        status_spaces = (7 - len(self.status)) * " "
+        return f"[{self.id}]{id_spaces} \tCreated: {self.created_at} \tStatus: {self.status}{status_spaces}   Subject: {self.subject}"
 
     #Compare the creation date of a ticket with another date
     #Returns: 1 if created after date, 0 if same, -1 if created before date
